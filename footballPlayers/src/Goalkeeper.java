@@ -3,8 +3,8 @@ public class Goalkeeper extends  Player{
 
     private int cleanSheets;
 
-    public Goalkeeper(String name, String team, int yellowCards, int redCards, double rating, double marketValue, boolean isInjured, int cleanSheets, int saves){
-        super(name, team, yellowCards, redCards, rating, marketValue, isInjured);
+    public Goalkeeper(String name, String team,int goals, int assists, int yellowCards, int redCards, double rating, double marketValue, int cleanSheets, int saves){
+        super(name, team,goals, assists, yellowCards, redCards, rating, marketValue);
         this.cleanSheets = cleanSheets;
         this.saves = saves;
     }

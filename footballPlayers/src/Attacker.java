@@ -1,29 +1,29 @@
 public class Attacker extends  Player{
-    private int goals;
-    private int assists;
+    private int shots;
+    private int crosses;
 
-    public Attacker(String name, String team, int yellowCards, int redCards, double rating, double marketValue, boolean isInjured, int goals, int assists){
-        super(name, team, yellowCards, redCards, rating, marketValue, isInjured);
-        this.goals = goals;
-        this.assists = assists;
+    public Attacker(String name, String team,int goals, int assists, int yellowCards, int redCards, double rating, double marketValue, int shots, int crosses){
+        super(name, team, goals, assists, yellowCards, redCards, rating, marketValue);
+        this.shots = shots;
+        this.crosses = crosses;
     }
 
     public int getGoals() {
-        return goals;
+        return shots;
     }
 
 
     public void setGoals(int goals) {
-        this.goals = goals;
+        this.shots = shots;
     }
 
 
     public int getAssists() {
-        return assists;
+        return crosses;
     }
 
 
     public void setAssists(int assists) {
-        this.assists = assists;
+        this.crosses = crosses;
     }
 }

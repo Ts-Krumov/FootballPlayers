@@ -2,20 +2,40 @@ public class Player {
     private String name;
     private String team;
 
+    private int goals;
+
+    private int assists;
+
     private int yellowCards;
     private int redCards;
     private double rating;
     private double marketValue;
-    private boolean isInjured;
 
-    public Player(String name, String team, int yellowCards, int redCards, double rating, double marketValue, boolean isInjured){
+    public Player(String name, String team, int goals, int assists,int yellowCards, int redCards, double rating, double marketValue){
         this.name = name;
         this.team = team;
+        this.goals = goals;
+        this.assists = assists;
         this.yellowCards = yellowCards;
         this.redCards = redCards;
         this.rating = rating;
         this.marketValue = marketValue;
-        this.isInjured = false;
+    }
+
+    public int getGoals() {
+        return goals;
+    }
+
+    public void setGoals(int goals) {
+        this.goals = goals;
+    }
+
+    public int getAssists() {
+        return assists;
+    }
+
+    public void setAssists(int assists) {
+        this.assists = assists;
     }
 
     public String getName() {
@@ -66,11 +86,5 @@ public class Player {
         this.marketValue = marketValue;
     }
 
-    public boolean isInjured() {
-        return isInjured;
-    }
 
-    public void setInjured(boolean injured) {
-        isInjured = injured;
-    }
 }
