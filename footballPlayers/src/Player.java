@@ -1,4 +1,6 @@
-public class Player {
+import java.io.Serializable;
+
+public class Player implements Serializable {
     private String name;
     private String team;
 
@@ -86,5 +88,17 @@ public class Player {
         this.marketValue = marketValue;
     }
 
-
+    @Override
+    public String toString() {
+        return "Player{" +
+                "name='" + name + '\'' +
+                ", team='" + team + '\'' +
+                ", goals=" + goals +
+                ", assists=" + assists +
+                ", yellowCards=" + yellowCards +
+                ", redCards=" + redCards +
+                ", rating=" + rating +
+                ", marketValue=" + marketValue +"m"+
+                '}';
+    }
 }
