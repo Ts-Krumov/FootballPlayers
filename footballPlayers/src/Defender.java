@@ -2,8 +2,8 @@ public class Defender extends Player{
     private int cleanSheets;
     private int tackles;
 
-    public Defender(String name, String team,int goals, int assists, int yellowCards, int redCards, double rating, double marketValue, int cleanSheets, int tackles){
-        super(name, team, goals, assists, yellowCards, redCards, rating, marketValue);
+    public Defender(String name, String team, int cleanSheets, int tackles){
+        super(name, team);
         this.cleanSheets = cleanSheets;
         this.tackles = tackles;
     }

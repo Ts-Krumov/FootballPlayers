@@ -4,40 +4,41 @@ public class Player implements Serializable {
     private String name;
     private String team;
 
-    private int goals;
+    private Cards cards;
 
-    private int assists;
+    private Performance performance;
 
-    private int yellowCards;
-    private int redCards;
-    private double rating;
-    private double marketValue;
+    private Rating rating;
 
-    public Player(String name, String team, int goals, int assists,int yellowCards, int redCards, double rating, double marketValue){
+
+    public Player(String name, String team){
         this.name = name;
         this.team = team;
-        this.goals = goals;
-        this.assists = assists;
-        this.yellowCards = yellowCards;
-        this.redCards = redCards;
+
+    }
+
+    public Rating getRating() {
+        return rating;
+    }
+
+    public void setRating(Rating rating) {
         this.rating = rating;
-        this.marketValue = marketValue;
     }
 
-    public int getGoals() {
-        return goals;
+    public Cards getCards() {
+        return cards;
     }
 
-    public void setGoals(int goals) {
-        this.goals = goals;
+    public void setCards(Cards cards) {
+        this.cards = cards;
     }
 
-    public int getAssists() {
-        return assists;
+    public Performance getPerformance() {
+        return performance;
     }
 
-    public void setAssists(int assists) {
-        this.assists = assists;
+    public void setPerformance(Performance performance) {
+        this.performance = performance;
     }
 
     public String getName() {
@@ -56,49 +57,16 @@ public class Player implements Serializable {
         this.team = team;
     }
 
-    public int getYellowCards() {
-        return yellowCards;
-    }
 
-    public void setYellowCards(int yellowCards) {
-        this.yellowCards = yellowCards;
-    }
-
-    public int getRedCards() {
-        return redCards;
-    }
-
-    public void setRedCards(int redCards) {
-        this.redCards = redCards;
-    }
-
-    public double getRating() {
-        return rating;
-    }
-
-    public void setRating(double rating) {
-        this.rating = rating;
-    }
-
-    public double getMarketValue() {
-        return marketValue;
-    }
-
-    public void setMarketValue(double marketValue) {
-        this.marketValue = marketValue;
-    }
 
     @Override
     public String toString() {
         return "Player{" +
                 "name='" + name + '\'' +
                 ", team='" + team + '\'' +
-                ", goals=" + goals +
-                ", assists=" + assists +
-                ", yellowCards=" + yellowCards +
-                ", redCards=" + redCards +
-                ", rating=" + rating +
-                ", marketValue=" + marketValue +"m"+
+                ", performance=" + " Goals:" + performance.getGoals() + "/ Assists:"+performance.getAssists()+
+                ", cards=" + " Yellow cards:" + cards.getYellowCards() + "/ Red cards:" + cards.getRedCards()+
+                ", rating=" + " Form:" + rating.getForm() + "/ Market value:" + rating.getMarketValue() +
                 '}';
     }
 }
