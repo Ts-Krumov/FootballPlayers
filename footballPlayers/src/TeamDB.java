@@ -13,7 +13,7 @@ public class TeamDB implements Serializable {
         playerList = new ArrayList<Player>();
     }
 
-    public void addPlayerToList(){
+    public void addPlayer(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Name:");
         String name = scanner.nextLine();
@@ -40,13 +40,20 @@ public class TeamDB implements Serializable {
         return totalSum;
     }
 
+    public void removePlayer(String name){
+        for(Player player: playerList){
+            if(name.equals(player.getName())){
+                playerList.remove(player);
+            }
+        }
+    }
+
     public void readPlayersSerializable(){
         try(FileInputStream fis = new FileInputStream(fileName);
             ObjectInputStream in = new ObjectInputStream(fis)) {
-            ArrayList<Player> inputList = (ArrayList<Player>) in.readObject();
-            for(Player playerFromFile:inputList){
-                playerList.add(playerFromFile);
-                System.out.println(playerFromFile);
+            playerList = (ArrayList<Player>) in.readObject();
+            for(Player player:playerList){
+                System.out.println(player);
             }
 
         }catch (IOException | ClassNotFoundException e){
@@ -56,11 +63,9 @@ public class TeamDB implements Serializable {
     }
 
     public void writePlayersSerializable() {
-        try (FileOutputStream file = new FileOutputStream(fileName,true);
+        try (FileOutputStream file = new FileOutputStream(fileName);
              ObjectOutputStream out = new ObjectOutputStream(file);){
-            //
                 out.writeObject(playerList);
-            //}
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
