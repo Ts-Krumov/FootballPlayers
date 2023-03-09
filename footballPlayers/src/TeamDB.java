@@ -13,7 +13,7 @@ public class TeamDB implements Serializable {
         playerList = new ArrayList<Player>();
     }
 
-    public void addPlayer(){
+    public void createPlayer(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Name:");
         String name = scanner.nextLine();
@@ -40,10 +40,53 @@ public class TeamDB implements Serializable {
         return totalSum;
     }
 
-    public void removePlayer(String name){
+    public void deletePlayer(String name){
         for(Player player: playerList){
             if(name.equals(player.getName())){
                 playerList.remove(player);
+            }
+        }
+    }
+
+    public void editPlayer(String name){
+        for(Player player: playerList){
+            if(name.equals(player.getName())){
+                System.out.println("You are editing: " + player.toString());
+                System.out.println("Edit name / team / price / all ?");
+                Scanner scanner = new Scanner(System.in);
+                String option = scanner.nextLine();
+                switch (option){
+                    case "name":
+                        System.out.println("New name? ");
+                        String newName = scanner.nextLine();
+                        player.setName(newName);
+                        break;
+                    case "team":
+                        System.out.println("New team? ");
+                        String newTeam = scanner.nextLine();
+                        player.setTeam(newTeam);
+                        break;
+                    case "price":
+                        System.out.println("New price? ");
+                        Double newPrice = Double.parseDouble(scanner.nextLine());
+                        player.setPrice(newPrice);
+                        break;
+                    case "all":
+                        System.out.println("New name? ");
+                        String editName = scanner.nextLine();
+                        player.setName(editName);
+                        System.out.println("New team? ");
+                        String editTeam = scanner.nextLine();
+                        player.setTeam(editTeam);
+                        System.out.println("New price? ");
+                        Double editPrice = Double.parseDouble(scanner.nextLine());
+                        player.setPrice(editPrice);
+                        break;
+                    default:
+                        System.out.println("Not a valid field!");
+                        break;
+
+                }
             }
         }
     }

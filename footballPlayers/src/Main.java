@@ -3,9 +3,10 @@ public class Main {
         TeamDB playersSelection = new TeamDB();
 
         playersSelection.readPlayersSerializable();
-        playersSelection.addPlayer();
-        playersSelection.removePlayer("Fred");
+        System.out.println(" ////////////////////////////////////// ");
+        playersSelection.editPlayer("Rashford");
         playersSelection.writePlayersSerializable();
+        System.out.println("/////////////////////////  FINAL RESULT  /////////////////////////");
         playersSelection.readPlayersSerializable();
 
 
