@@ -3,13 +3,13 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class TeamDB implements Serializable {
+public class PlayerDB implements Serializable {
 
-    private final String fileName = "playersList.txt";
-    private ArrayList<Player> playerList;
+    private final String fileName = "playersDB.txt";
+    public static ArrayList<Player> playerList;
 
 
-    public TeamDB(){
+    public PlayerDB(){
         playerList = new ArrayList<Player>();
     }
 
@@ -103,12 +103,20 @@ public class TeamDB implements Serializable {
             e.printStackTrace();
         }
 
+    } public void loadPlayers(){
+        try(FileInputStream fis = new FileInputStream(fileName);
+            ObjectInputStream in = new ObjectInputStream(fis)) {
+            playerList = (ArrayList<Player>) in.readObject();
+        }catch (IOException | ClassNotFoundException e){
+            e.printStackTrace();
+        }
+
     }
 
     public void writePlayersSerializable() {
         try (FileOutputStream file = new FileOutputStream(fileName);
              ObjectOutputStream out = new ObjectOutputStream(file);){
-                out.writeObject(playerList);
+            out.writeObject(playerList);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
