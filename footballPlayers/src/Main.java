@@ -4,8 +4,9 @@ public class Main {
         TeamDB teams = new TeamDB();
         players.loadPlayers();
         teams.loadTeams();
-
-
-
+        teams.printTeams();
+        teams.makeTransfers();
+        teams.writeTeams();
+        teams.readTeams();
     }
 }

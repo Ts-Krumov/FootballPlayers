@@ -73,7 +73,7 @@ public class TeamDB implements Serializable {
                     System.out.println("Name of the player you want to sell:");
                     String playerName = scanner.nextLine();
                     team.sellPlayer(playerName);
-                }else if(command.equals("buy")){
+                }else if(command.equals("Buy")){
                     System.out.println("Name of the player you want to buy:");
                     String playerName = scanner.nextLine();
                     team.buyPlayer(playerName);

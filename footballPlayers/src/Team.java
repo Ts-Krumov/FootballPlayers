@@ -1,5 +1,6 @@
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Random;
 
 public class Team implements Serializable {
@@ -82,10 +83,10 @@ public class Team implements Serializable {
     }
 
     public void sellPlayer(String name){
-        for(Player player : PlayerDB.playerList){
-            if(name.equals(player.getName())){
-                squad.remove(player);
-                System.out.printf("You team have sold %s",player.getName());
+        for(Iterator<Player> iterator = squad.iterator(); iterator.hasNext();){
+            Player player = iterator.next();
+            if (player.getName().equals(name)) {
+            iterator.remove();
             }
         }
     }
