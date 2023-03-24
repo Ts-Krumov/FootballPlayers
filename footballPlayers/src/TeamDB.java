@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class TeamDB implements Serializable {
@@ -21,12 +22,17 @@ public class TeamDB implements Serializable {
         teamsList.add(team);
     }
 
-    public void deleteTeam(String name){
-        for(Team team: teamsList){
-            if(name.equals(team.getName())){
-                teamsList.remove(team);
+    public void deleteTeam(){
+        System.out.println("Enter name of the team you want to delete: ");
+        String name = scanner.nextLine();
+        for(Iterator<Team> iterator = teamsList.iterator(); iterator.hasNext();){
+            Team team = iterator.next();
+            if (team.getName().equals(name)) {
+                iterator.remove();
+                System.out.printf("Team %s has been deleted.", team.getName());
             }
         }
+
     }
 
     public void readTeams(){

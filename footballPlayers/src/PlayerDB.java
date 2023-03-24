@@ -13,8 +13,9 @@ public class PlayerDB implements Serializable {
         playerList = new ArrayList<Player>();
     }
 
+    Scanner scanner = new Scanner(System.in);
+
     public void createPlayer(){
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Name:");
         String name = scanner.nextLine();
         System.out.println("Team:");
@@ -40,7 +41,9 @@ public class PlayerDB implements Serializable {
         return totalSum;
     }
 
-    public void deletePlayer(String name){
+    public void deletePlayer(){
+        System.out.println("Player you want to Delete?");
+        String name = scanner.nextLine();
         for(Player player: playerList){
             if(name.equals(player.getName())){
                 playerList.remove(player);
@@ -48,7 +51,9 @@ public class PlayerDB implements Serializable {
         }
     }
 
-    public void editPlayer(String name){
+    public void editPlayer(){
+        System.out.println("Player you want to Edit?");
+        String name = scanner.nextLine();
         for(Player player: playerList){
             if(name.equals(player.getName())){
                 System.out.println("You are editing: " + player.toString());

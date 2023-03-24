@@ -122,8 +122,6 @@ public class Team implements Serializable {
         }
 
         System.out.printf("%s %d : %d %s \n", this.getName(), homeGoals, awayGoals, away.getName());
-//        System.out.printf("%s W:%d L:%d D:%d \n",this.getName(), this.wins, this.loses, this.draws);
-//        System.out.printf("%s W:%d L:%d D:%d \n",away.getName(), away.wins, away.loses, away.draws);
     }
 
     @Override
