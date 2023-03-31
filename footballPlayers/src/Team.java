@@ -65,21 +65,16 @@ public class Team implements Serializable {
 
     
     public void buyPlayer(String name){
-        try{
-            for(Player player : PlayerDB.playerList) {
-                if(name.equals(player.getName())){
-                    squad.add(player);
-                    System.out.printf("Congratulations! You team have bought %s\n",player.getName());
+            for(Player player : PlayerManager.playerList) {
+                if(squad.size() < 11){
+                    if(name.equals(player.getName())){
+                        squad.add(player);
+                        System.out.printf("Congratulations! You team have bought %s\n",player.getName());
+                    }
+                }else {
+                    System.out.println("Max team size is reached. You can not buy more Players.");
                 }
             }
-            if (squad.size() > 11){
-                throw new TeamSizeException("Your team size is limited to 11 Players!");
-            }
-        }catch (TeamSizeException e){
-            e.printStackTrace();
-        }
-
-
     }
 
     public void sellPlayer(String name){

@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Scanner;
 
-public class TeamDB implements Serializable {
+public class TeamManager implements Serializable {
 
     private String TeamsFileName = "teamsDB.txt";
 
@@ -11,7 +11,7 @@ public class TeamDB implements Serializable {
 
     Scanner scanner = new Scanner(System.in);
 
-    public TeamDB(){
+    public TeamManager(){
         teamsList = new ArrayList<Team>();
     }
 
@@ -55,20 +55,20 @@ public class TeamDB implements Serializable {
                 ObjectInputStream in = new ObjectInputStream(fis)) {
                 teamsList = (ArrayList<Team>) in.readObject();
             }catch (IOException | ClassNotFoundException e){
-                e.printStackTrace();
+                e.printStackTrace();//log files
             }
     }
 
     public void writeTeams() {
         try (FileOutputStream file = new FileOutputStream(TeamsFileName);
-             ObjectOutputStream out = new ObjectOutputStream(file);){
+             ObjectOutputStream out = new ObjectOutputStream(file)){
             out.writeObject(teamsList);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void makeTransfers(){
+    public void makeTransfers(){ //command pattern
         System.out.println("Enter name of the team: ");
         String teamName = scanner.nextLine();
         for(Team team:teamsList){

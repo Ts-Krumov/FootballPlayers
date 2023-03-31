@@ -3,13 +3,13 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class PlayerDB implements Serializable {
+public class PlayerManager implements Serializable {
 
     private final String fileName = "playersDB.txt";
     public static ArrayList<Player> playerList;
 
 
-    public PlayerDB(){
+    public PlayerManager(){
         playerList = new ArrayList<Player>();
     }
 
