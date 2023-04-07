@@ -17,7 +17,7 @@ public class TeamsFileManager {
             ObjectInputStream in = new ObjectInputStream(fis)) {
             teamsList = (ArrayList<Team>) in.readObject();
         }catch (IOException | ClassNotFoundException e){
-            System.out.println("Error: " + e.getMessage());
+            System.out.println("Loading Teams Error: " + e.getMessage());
         }
     }
 
@@ -26,7 +26,7 @@ public class TeamsFileManager {
              ObjectOutputStream out = new ObjectOutputStream(file)){
             out.writeObject(teamsList);
         } catch (IOException e) {
-            System.out.println("Error: " + e.getMessage());
+            System.out.println("Writing Teams error: " + e.getMessage());
         }
     }
 }

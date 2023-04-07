@@ -66,7 +66,7 @@ public class Team implements Serializable {
 
     
     public void buyPlayer(String name){
-            for(Player player : PlayerManager.playerList) {
+            for(Player player : PlayersFileManager.playerList) {
                 if(squad.size() < 11){
                     if(name.equals(player.getName())){
                         squad.add(player);
@@ -122,12 +122,10 @@ public class Team implements Serializable {
 
     @Override
     public String toString() {
-        return "Team{" +
-                "name='" + name + '\'' +
-                ", squad=" + squad +
-                ", wins=" + wins +
+        return  name +
+                ", squad {" + squad +
+                "}, wins=" + wins +
                 ", loses=" + loses +
-                ", draws=" + draws +
-                '}';
+                ", draws=" + draws;
     }
 }

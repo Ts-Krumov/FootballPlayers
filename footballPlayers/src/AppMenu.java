@@ -7,6 +7,7 @@ public class AppMenu {
         PlayerManager players = new PlayerManager();
         TeamManager teams = new TeamManager();
         TeamsFileManager TFM = new TeamsFileManager();
+        PlayersFileManager PFM = new PlayersFileManager();
 
 
         System.out.println("Welcome to FootballLeague!");
@@ -22,7 +23,7 @@ public class AppMenu {
                 "-Play game \n");
         String action = scanner.nextLine();
         while (!action.equals("exit")){
-            players.loadPlayers();
+            PFM.loadPlayers();
             TFM.loadTeams();
             switch (action){
                 case "Create player":
@@ -47,7 +48,7 @@ public class AppMenu {
                     teams.playGame();
                     break;
                 case "Print players":
-                    players.readPlayersSerializable();
+                    PFM.readPlayers();
                     break;
                 case "Print teams":
                     TFM.readTeams();
@@ -56,7 +57,7 @@ public class AppMenu {
                     System.out.println("Not a valid action!");
                     break;
             }
-            players.writePlayersSerializable();
+            PFM.writePlayers();
             TFM.writeTeams();
             System.out.println("New action:");
             action = scanner.nextLine();
