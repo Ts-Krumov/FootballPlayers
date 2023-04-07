@@ -1,12 +1,13 @@
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
 
 public class Team implements Serializable {
     private String name;
 
-    private ArrayList<Player> squad;
+    private List<Player> squad;
 
     private int wins;
 
@@ -17,8 +18,8 @@ public class Team implements Serializable {
 
     public Team(String name, int wins, int draws, int loses){
         this.name = name;
-        squad = new ArrayList<Player>(11);
-        this.wins = loses;
+        this.squad = new ArrayList<Player>(11);
+        this.wins = wins;
         this.loses = loses;
         this.draws = draws;
     }
@@ -56,7 +57,7 @@ public class Team implements Serializable {
     }
 
     public ArrayList<Player> getSquad() {
-        return squad;
+        return (ArrayList<Player>) squad;
     }
 
     public void setSquad(ArrayList<Player> squad) {

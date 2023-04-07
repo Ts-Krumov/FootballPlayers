@@ -1,6 +1,7 @@
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class PlayerManager implements Serializable {
@@ -18,11 +19,9 @@ public class PlayerManager implements Serializable {
     public void createPlayer(){
         System.out.println("Name:");
         String name = scanner.nextLine();
-        System.out.println("Team:");
-        String team = scanner.nextLine();
         System.out.println("Price:");
         Double price = Double.parseDouble(scanner.nextLine());
-        Player player = new Player(name, team, price);
+        Player player = new Player(name, price);
         playerList.add(player);
     }
 
@@ -44,9 +43,11 @@ public class PlayerManager implements Serializable {
     public void deletePlayer(){
         System.out.println("Player you want to Delete?");
         String name = scanner.nextLine();
-        for(Player player: playerList){
+        for(Iterator<Player> iterator = playerList.iterator(); iterator.hasNext();){
+            Player player = iterator.next();
             if(name.equals(player.getName())){
-                playerList.remove(player);
+                iterator.remove();
+                System.out.printf("Player %s has been deleted", player.getName());
             }
         }
     }
@@ -57,7 +58,7 @@ public class PlayerManager implements Serializable {
         for(Player player: playerList){
             if(name.equals(player.getName())){
                 System.out.println("You are editing: " + player.toString());
-                System.out.println("Edit name / team / price / all ?");
+                System.out.println("Edit name  / price / all ?");
                 Scanner scanner = new Scanner(System.in);
                 String option = scanner.nextLine();
                 switch (option){
@@ -65,11 +66,6 @@ public class PlayerManager implements Serializable {
                         System.out.println("New name? ");
                         String newName = scanner.nextLine();
                         player.setName(newName);
-                        break;
-                    case "team":
-                        System.out.println("New team? ");
-                        String newTeam = scanner.nextLine();
-                        player.setTeam(newTeam);
                         break;
                     case "price":
                         System.out.println("New price? ");
@@ -80,9 +76,6 @@ public class PlayerManager implements Serializable {
                         System.out.println("New name? ");
                         String editName = scanner.nextLine();
                         player.setName(editName);
-                        System.out.println("New team? ");
-                        String editTeam = scanner.nextLine();
-                        player.setTeam(editTeam);
                         System.out.println("New price? ");
                         Double editPrice = Double.parseDouble(scanner.nextLine());
                         player.setPrice(editPrice);
@@ -105,7 +98,7 @@ public class PlayerManager implements Serializable {
             }
 
         }catch (IOException | ClassNotFoundException e){
-            e.printStackTrace();
+            System.out.println("File error: " + e.getMessage());
         }
 
     } public void loadPlayers(){
@@ -113,7 +106,7 @@ public class PlayerManager implements Serializable {
             ObjectInputStream in = new ObjectInputStream(fis)) {
             playerList = (ArrayList<Player>) in.readObject();
         }catch (IOException | ClassNotFoundException e){
-            e.printStackTrace();
+            System.out.println("File error: " + e.getMessage());
         }
 
     }
@@ -123,7 +116,7 @@ public class PlayerManager implements Serializable {
              ObjectOutputStream out = new ObjectOutputStream(file);){
             out.writeObject(playerList);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            System.out.println("File error: " + e.getMessage());
         }
     }
 
