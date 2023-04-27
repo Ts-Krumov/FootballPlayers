@@ -32,7 +32,7 @@ public class Player implements Serializable {
 
     @Override
     public String toString() {
-        return  name + "( " +
-                + price +"$ )";
+        return  name + "-" +
+                + price +" $";
     }
 }

@@ -3,8 +3,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TeamsFileManager {
-    public static List<Team> teamsList;
     private String TeamsFileName = "teamsDB.txt";
+    public static List<Team> teamsList;
 
     public void readTeams(){
             for(Team team:teamsList){
@@ -13,6 +13,9 @@ public class TeamsFileManager {
     }
 
     public void loadTeams(){
+        if( teamsList == null){
+            teamsList = new ArrayList<Team>();
+        }
         try(FileInputStream fis = new FileInputStream(TeamsFileName);
             ObjectInputStream in = new ObjectInputStream(fis)) {
             teamsList = (ArrayList<Team>) in.readObject();

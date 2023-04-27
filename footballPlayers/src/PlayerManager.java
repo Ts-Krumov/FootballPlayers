@@ -33,7 +33,8 @@ public class PlayerManager implements Serializable {
             Player player = iterator.next();
             if(name.equals(player.getName())){
                 iterator.remove();
-                System.out.printf("Player %s has been deleted", player.getName());
+                System.out.printf("Player %s has been deleted ", player.getName());
+                break;
             }else {
                 System.out.println("Player not found.");
             }

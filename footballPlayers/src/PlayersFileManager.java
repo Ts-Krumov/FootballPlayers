@@ -15,6 +15,9 @@ public class PlayersFileManager {
         }
 
     public void loadPlayers(){
+        if( playerList == null){
+        playerList = new ArrayList<Player>();
+    }
         try(FileInputStream fis = new FileInputStream(fileName);
             ObjectInputStream in = new ObjectInputStream(fis)) {
             playerList = (ArrayList<Player>) in.readObject();

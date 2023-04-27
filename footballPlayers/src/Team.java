@@ -9,6 +9,8 @@ public class Team implements Serializable {
 
     private List<Player> squad;
 
+    private double balance;
+
     private int wins;
 
     private int loses;
@@ -16,12 +18,21 @@ public class Team implements Serializable {
     private int draws;
 
 
-    public Team(String name, int wins, int draws, int loses){
+    public Team(String name, double balance, int wins, int draws, int loses){
         this.name = name;
         this.squad = new ArrayList<Player>(11);
+        this.balance = balance;
         this.wins = wins;
         this.loses = loses;
         this.draws = draws;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
     }
 
     public int getWins() {
@@ -69,8 +80,15 @@ public class Team implements Serializable {
             for(Player player : PlayersFileManager.playerList) {
                 if(squad.size() < 11){
                     if(name.equals(player.getName())){
-                        squad.add(player);
-                        System.out.printf("Congratulations! You team have bought %s\n",player.getName());
+                        balance-=player.getPrice();
+                        if(balance < 0){
+                            System.out.printf("Not enough money! Your team needs %.2f more money \n",Math.abs(balance-player.getPrice()));
+                            balance+= player.getPrice();
+                        }else {
+                            squad.add(player);
+                            System.out.printf("Congratulations! You team have bought %s\n",player.getName());
+                            System.out.printf("Money left in the Team: %.2f", balance);
+                        }
                     }
                 }else {
                     System.out.println("Max team size is reached. You can not buy more Players.");
@@ -82,7 +100,10 @@ public class Team implements Serializable {
         for(Iterator<Player> iterator = squad.iterator(); iterator.hasNext();){
             Player player = iterator.next();
             if (player.getName().equals(name)) {
-            iterator.remove();
+                iterator.remove();
+                balance+= player.getPrice();
+                System.out.printf("%s has been sold from the Team.\n", player.getName());
+                System.out.printf("%.2f money left in the Team.\n", balance);
             }
         }
     }
@@ -95,6 +116,8 @@ public class Team implements Serializable {
         }
         return sum;
     }
+
+
 
     public void playAgainst(Team away){
         Random random = new Random();
@@ -123,8 +146,8 @@ public class Team implements Serializable {
     @Override
     public String toString() {
         return  name +
-                ", squad {" + squad +
-                "}, wins=" + wins +
+                ", squad " + squad +
+                "," + " balance=" + balance + " wins=" + wins +
                 ", loses=" + loses +
                 ", draws=" + draws;
     }

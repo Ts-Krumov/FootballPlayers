@@ -8,6 +8,7 @@ public class AppMenu {
         TeamManager teams = new TeamManager();
         TeamsFileManager TFM = new TeamsFileManager();
         PlayersFileManager PFM = new PlayersFileManager();
+        League league = new League();
 
 
         System.out.println("Welcome to FootballLeague!");
@@ -20,6 +21,7 @@ public class AppMenu {
                 "-Make transfers \n" +
                 "-Print players \n" +
                 "-Print teams \n" +
+                "-Print table \n" +
                 "-Play game \n");
         String action = scanner.nextLine();
         while (!action.equals("exit")){
@@ -52,6 +54,10 @@ public class AppMenu {
                     break;
                 case "Print teams":
                     TFM.readTeams();
+                    break;
+                case "Print table":
+                    league.sortByPoints();
+                    league.printTable();
                     break;
                 default:
                     System.out.println("Not a valid action!");

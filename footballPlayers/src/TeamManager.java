@@ -1,6 +1,6 @@
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Scanner;
 
 public class TeamManager implements Serializable {
@@ -10,14 +10,15 @@ public class TeamManager implements Serializable {
     public void createTeam(){
         System.out.println("Enter name of the team you want to create: ");
         String name = scanner.nextLine();
-        for(Team teamInList : TeamsFileManager.teamsList){
-            if(teamInList.getName().equals(name)){
-                System.out.println("Team already exists!");
-                break;
-            }
-            Team team = new Team(name,0,0,0);
-            TeamsFileManager.teamsList.add(team);
-        }
+                for(Team teamInList : TeamsFileManager.teamsList) {
+                    if (teamInList.getName().equals(name)) {
+                        System.out.println("Team already exists!");
+                        break;
+                    }
+                }
+                    Team team = new Team(name,10, 0,0,0);
+                    TeamsFileManager.teamsList.add(team);
+                    System.out.printf("%s successfully created!", team.getName());
     }
 
     public void deleteTeam(){
